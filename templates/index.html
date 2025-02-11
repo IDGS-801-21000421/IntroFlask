@@ -1,33 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Pagina principal</title>
-</head>
-<body>
-
-    <h1 class="text-center">Alumnos</h1>
-
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Grup</th>
-                    <th>Matricula</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Juan</td>
-                    <td>IDGS801</td>
-                    <td>21000421</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</body>
-</html>
+{% extends "layaout.html" %}
+{% block container%}
+            <h1>{{titulo}}</h1>
+            {% for i in lista %}
+                    <h2>{{i}}</h2>
+            {% endfor %}
+{% endblock %}
