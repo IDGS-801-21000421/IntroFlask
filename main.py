@@ -100,9 +100,6 @@ def cinepolis():
     nombre=nombre, personas=personas, tarjeta=tarjeta, boletos=boletos)
 
 
-
-
-
 # @app.route("/resultado", methods=["POST"])
 # def resultado():
     
@@ -111,9 +108,42 @@ def cinepolis():
  
 #     return "La suma de {} + {} es {}".format(n1,n2,str(int(n1)+int(n2)))
     
+
+@app.route("/zchino", methods=["GET", "POST"])
+def zchino():
     
+    nombre = ""
+    apaterno = ""
+    amaterno = ""
+    dia = 0
+    mes = 0
+    anio = 0
+    edad = 0
+    zodiac_image = ""
+    zodiac_sign = ""
+    
+    signos = ['Mono', 'Gallo', 'Perro', 'Cerdo', 'Rata', 'Buey', 'Tigre', 'Conejo', 'Dragón', 'Serpiente', 'Caballo', 'Cabra']
+    images = ['mono.svg', 'gallo.svg', 'perro.svg', 'cerdo.svg', 'rata.svg', 'buey.svg', 'tigre.svg', 'conejo.svg', 'dragon.svg', 'serpiente.svg', 'caballo.svg', 'cabra.svg']
+
+    
+    if request.method == "POST":
+        nombre = request.form.get('nombre')
+        apaterno = request.form.get('apaterno')
+        amaterno = request.form.get('amaterno')
+        dia = int(request.form.get('dia'))
+        mes = int(request.form.get('mes'))
+        anio = int(request.form.get('anio'))
 
 
+        edad = 2025 - anio 
+        zodiac_index = anio % 12  
+        zodiac_sign = signos[zodiac_index]
+        zodiac_image = images[zodiac_index]
+        
+
+    return render_template("zchino.html", nombre=nombre,edad=edad, zodiac_image=zodiac_image, zodiac_sign=zodiac_sign, images=images)
+
+            
 @app.route("/default/")
 @app.route("/default/<string:param>")
 def funcion(param="Juan"):
