@@ -1,5 +1,7 @@
 
-from flask import Flask, render_template, request # type: ignore
+from flask import Flask, render_template, request 
+
+import forms
 
 app = Flask(__name__)
 
@@ -143,7 +145,22 @@ def zchino():
 
     return render_template("zchino.html", nombre=nombre,edad=edad, zodiac_image=zodiac_image, zodiac_sign=zodiac_sign, images=images)
 
+     
+@app.route("/alumnos", methods=["GET", "POST"])
+def alumnos():
+    mat=''
+    nom=''
+    ape=''
+    email=''
+    alummo_clas=forms.UserForm(request.form)
+    if request.method == 'POST':
+        mat=alummo_clas.matricula.data
+        nom=alummo_clas.nombre.data
+        ape=alummo_clas.apellido.data
+        email=alummo_clas.correo.data
+    return render_template("alumnos.html", form=alummo_clas,mat=mat,nom=nom,ape=ape,email=email)
             
+    
 @app.route("/default/")
 @app.route("/default/<string:param>")
 def funcion(param="Juan"):
